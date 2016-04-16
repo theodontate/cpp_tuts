@@ -1,0 +1,30 @@
+GNU make :
+
+target : dependencies
+	command
+
+A makefile typically consists of a target, dependencies and a command.
+
+Eg:
+
+Movie.o: Movie.cpp Movie.h Vector.h
+	gcc -Wall -c Movie.cpp
+
+A target appears before the left of the colon. A target is usually a file but that might not be the case always. The entry tells you how to construct a target and more importantly when to recompile thus reconstructing the target.
+
+After the target and the colon, you list out the dependencies. The dependencies are usually a list of files which the target depends upon. The dependencies are used by make to understand when to recompile the target. The make utility decides when to reconstruct the target based on something very simple : timestamp.
+
+Basically, if the dependencies have a timestamp (modified date and time) which is more recent than the target, then chances are that the target has to be recompiled.
+
+The updates are done recursively.
+When checking the dependencies, if make finds any of the dependent files to be targets, and if so, it looks at the dependencies based on the timestamp and it may update the dependent files too.
+
+In order to keep track of all .h dependencies, you can write the dependencies in a makefile.
+
+Eg:
+vector.h: foo.h
+
+In this case, there are no targets. It just helps the compiler to determine that a dependency exists.
+
+Make will always run the commands from the first target in the makefile. It will not run any of the commands from the other targets.
+

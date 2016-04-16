@@ -1,0 +1,235 @@
+CPP : (To perfection)
+
+Utilizing GNU compiler and cmake.
+
+Recursion :
+
+curious cases :
+
+factorial of a number :
+
+
+int main() {
+	int num, result;
+	std::cout << "Enter a number : ";
+	std::cin >> num;
+	result = fact(num);
+	std::cout << "Result : " << result << std::endl;
+	return 0;
+}
+
+int fact (int number) {
+
+	if (number > 0)
+	{
+		return number * fact(number - 1);
+	}
+
+	else return 1;
+}
+
+Here,
+
+let the number be 5.
+if condition satisfied :
+	return number * fact(number - 1);
+
+here it doesn't return the value right away, instead another function call is made which is technically another thread.
+
+stack :
+return 5 * (return 4 * (return 3 * (return 2 * (return 1 * 1))))
+
+
+Introduction to pointers :
+Whenever you run a program, it is loaded from computer's disk into the memory.
+Memory is typically laid out as a series of locations, we usually call these locations
+8-bit bytes but actually the size depends on the architecture of the particular machine
+and is usually called the machine's word size. Each space is distinguished by its address.
+
+Pass by value :
+sending an address into a function so that you can change the value of an external variable from f(x).
+
+Pass by reference :
+
+specifying storage location :
+
+static keyword :
+
+Typedef:
+
+Pointers and Structs :
+
+Clarifying programs with enum :
+
+int main(int argc, char* argv[]) {
+}
+
+the first argument is the number of elements in the array, which is the second argument.
+
+2
+0000 0010
+1111 1111
+0000 0010
+
+0000 0001
+1000 0000
+0100 0000
+
+
+Preprocessor debugging flags and Runtime Debugging flags.
+
+Turning variables and expressions into strings :
+Stringize operator
+when you put a # in front of an argument in a preprocessor macro, the preprocessor turns the argument into a character array.
+
+Function Addresses :
+Defining a function pointer :
+
+To define a function pointer which points to a function that has no argument and return value :
+
+void *(functPtr)();
+
+void * (*(*fp1)(int))[10]
+
+fp1 - variable name
+*fp1 - is a pointer
+(int) - to a function with an int as argument
+* - and the function returns a pointer to an array of 10 void * pointers.
+
+fp2 is a pointer which points to function which takes 2 ints and 1 float as arguments
+
+
+float (*(*fp2)(int, int, float))(int);
+
+fp2 is a pointer which points to a function
+that takes 2 ints and one float and returns a pointer which points to a function that takes an int and returns a float.
+
+typedef double (*(*(*fp3)())[10])();
+fp3 a;
+
+fp3 is a pointer which points to a function which takes no arguments and returns a pointer which points to an array of 10 pointers which point to a function that takes no arguement and returns a double.
+
+int (*(*f4())[10])();
+
+f4 is a pointer which points to a function that returns takes no argument but returns a pointer to an array of 10 pointers which point to a function that takes no arguments but returns an integer.
+
+Library :
+A library is a package containing code that some one wrote and is usually a file with an extension lib.
+
+An unsigned char is the smallest piece of storage a C compiler supports.
+
+initialize() as the name suggests is used to initialize the internal variables to appropriate values.
+Initially the storage point is set to zero.
+
+cStash is initialized with a primary size, quantity is the number of elements and next is going to point to the next free location.
+
+add is used to add an element to the stash. Since the stash should be capable of adding any element, we are using const void* as the type.
+add inserts the element to the first location available unless there is no space in the stash. First it checks to see if there is any available space left. If not, it expands the storage using the inflate function.
+Since the compiler doesn't know the data type, all it gets is a void*.
+You can't just do an assignment instead you have to copy the variable byte by byte. The most straight forward way to perform the copying is by using array indexing.
+
+Dynamic Storage Allocation :
+
+You might never know how much storage is required for cStash, so the memory pointed to by storage is allocated on the heap. The heap is a big block of memory used for allocating smaller pieces at runtime. You use the heap when you don't know the size of memory you will need.
+
+The actual storage allocation happens in the new expression.
+
+The general form of new expression is new Type.
+
+A new expression returns a pointer of the exact type that you asked for.
+So if you say new Type, you get back a pointer to a Type.
+
+After the data is copied from the old storage to the new storage, the old storage should be released so that it can be used by other parts of the programs. The delete keyword is the complement of new and is applied to release any storage that is allocated with new.
+
+delete []myArray;
+
+clib.cpp :
+
+in.open("CLibTest.cpp"); //in is a handle for the file. open opens the file.
+
+assert(int) makes sure that the code crashes if we aren't able to open the file.
+
+while(getline(in, line)) is used to read the file, one line at a time.
+
+add(&stringStash, line.c_str());
+
+std::cout << cp will print the entire string that cp points to if cp is a char*.
+
+cpplib.h :
+
+first of all, there is no typedef as the C++ compiler turns the name of the structure into a new data type for the program.
+
+Data members are inside struct like usual but the functions are also part of the struct.
+
+In c++, instead of forcing you to pass the address of structure to every function that operates on the structure, C++ compiler does this secretly for you.
+
+functions inside the struct don't collide with functions with the same name inside any other structure. In fact, you don't need to use decorated names as they don't collide with anything else. But sometimes you do need to specify which function you are refering to. To accomplish this, C++ has an operator (::) scope resolution operator as names can now be in different scopes ie global scope or the scope of struct.
+
+In C++, the functions should be declared before using them. Unlike C, which allows you to get away with such stuff.
+
+In C++, we don't need to provide the address of the structure to access its members as C++ automatically does this for you. But what if you wanted to get the address of the structure.
+
+For such scenarious, we can use "this".
+
+In C, you could assign a void* to any other pointer like this :
+
+int i = 10;
+void* vp = &i; //valid in both c and cpp
+int* ip = vp; //only valid in c
+
+in c++, you need to explicitly cast in order to assign a void* to any other pointer.
+
+In C++, object is just a variable and the purest definition is " a region of storage "
+
+Abstract Data Typing :
+The ability to package data with functions allows you to create a new data type and this is called encapsulation.
+
+For eg, Stash even though behaves like a normal data type, is actually an abstract data type because it allows us to abstract a concept from the problem space to the solution space.
+
+object.memberfunction(); //This is actually calling a member function for an object. But in object-oriented terms, it can also be referred to as "sending a message to an object."
+
+So for Stash s, s.add(&i) is actually sending a message to s, to add i to itself.
+
+The size of struct is the combined size of all of its members.
+
+Header file etiquette :
+In C++, header files are very important as they are virtually mandatory for easy program development and you put very specific information in them : declarations. The header file tells the compiler what is available in your library.
+
+Header files should only contain the declarations of structures. Thumb rule : It shouldn't contain the definition.
+
+
+C++'s one definition rule, you can declare as things as many times you want, but there can be only one actual definition for each thing.
+
+The preprocessor directives :
+#define, #endif and #ifdef
+
+The preprocessor directive #define can be used to create compile time flags. You can two choices : you can either tell the preprocessor that the flag is defined, without specifying a value ie
+#define FLAG
+
+or else you can do it the typical C way ie
+#define PI 3.14
+
+either way the label can now be tested by the preprocessor to see if it has been defined.
+#ifdef FLAG
+
+This will yield a true result and the code after this statement will be sent to the compiler. The inclusion ends with the statement #endif
+
+These preprocessor statements that prevent multiple inclusion are also called include guards.
+
+Nested Structures :
+The convenience of taking data and function names out of the global name space extends to structures. You can nest a structure within another structure.
+
+File : Stack.cpp Stack.h
+
+To add an additional level of struct ie to define a member of nested structure, you just use an additional scope resolution operator.
+
+Stack initialize sets head to zero, so that object knows it has an empty list.
+
+Stack::push(void* dat) is used to add a new element to the stack.
+
+Link* newLink = new Link;
+
+
+
+
+
