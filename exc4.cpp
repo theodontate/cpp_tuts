@@ -3,7 +3,7 @@
 
 int main (int argc, char** argv) {
 	std::string word;
-	std::cout << "Enter a word : ";
+	std::cout << "Enter a word : "; //nerd commenter is here.
 	std::cin >> word;
 	changeP(&word);
 	std::cout << word << std::endl;

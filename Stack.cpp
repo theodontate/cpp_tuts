@@ -37,8 +37,3 @@ void Stack::cleanup () {
 	require(head == 0, "Stack not empty");
 
 }
-
-int main (int argc, char** argv) {
-	return 0;
-}
-

@@ -13,6 +13,7 @@ int main (int argc, char** argv) {
 	char* cp;
 	std::ifstream in;
 	std::string line;
+	int a;
 	const int bufsize = 80;
 	initialize(&intStash, sizeof(int));
 	for (i = 0; i < 100; i++) {

@@ -229,6 +229,17 @@ Stack::push(void* dat) is used to add a new element to the stack.
 
 Link* newLink = new Link;
 
+Stack::push (void* dat) {
+Link* newLink = new Link; // storage allocated in heap for link
+newLink->initialize(dat, head);
+data = dat; //data pointer is assigned.
+nxt = head; ie nxt = 0;
+head = newLink;
+}
+
+Global Scope Resolution Operator :
+:: -> global scope resolution operator to choose a global variable.
+
 
 
 

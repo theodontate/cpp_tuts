@@ -1,0 +1,11 @@
+DEBUG=-g
+CC=gcc
+CFLAGS=-Wall -Werror -c $(DEBUG)
+LFLAGS=-Wall -Werror $(DEBUG)
+OBJ=exc4_1.o
+
+exc4_1: $(OBJ)
+	$(CC) $(LFLAGS) -o $@ $(OBJ)
+
+exc4_1.o: exc4_1.c
+	$(CC) $(CFLAGS) $<
