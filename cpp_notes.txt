@@ -240,7 +240,21 @@ head = newLink;
 Global Scope Resolution Operator :
 :: -> global scope resolution operator to choose a global variable.
 
+Friends :
+file : Friend.cpp
+struct Y has a member function f() which will modifies an object of type X. This is a bit of conundrum because the c++ compiler requires you to declare everything before you can refer to it, so struct y must be declared before its member Y::f() can be declared as a friend in struct X.
+But for Y::f(X*) to be declared X should be declared before it.
 
+here is the solution : notice that Y::f(X*) takes an address of an X object. This is critical because the compiler always knows how to pass an address, which is of fixed size regardless of the object being passed, even if it doesn't have full information regarding the size of the object the pointer points to. However if you pass an object, then the compiler needs to know the entire structure definition of X, to know the size and how to pass it, before it allows you to declare a function like :
+Y::f(X)
+
+By passing in the address of X, the compiler allows you to make an incomplete type specification of X prior to declaring Y::f(X*)
+
+g() has not been declared before but it turns out that friend keyword can be used to simultaneously declare the function and give it friend access.
+
+struct z; is an incomplete type specification.
+
+Nested friends:
 
 
 
