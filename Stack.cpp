@@ -14,7 +14,8 @@ void Stack::initialize () {
 }
 
 void Stack::push (void* dat) {
-	Link* newLink = new Link;
+	Link nl;
+	Link* newLink = &nl;
 	newLink->initialize(dat, head);
 	head = newLink;
 }
