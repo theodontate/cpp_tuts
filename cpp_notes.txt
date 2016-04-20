@@ -254,7 +254,23 @@ g() has not been declared before but it turns out that friend keyword can be use
 
 struct z; is an incomplete type specification.
 
+
+Nested Structures :
+In nested structures, you can't create new instances of the nested structures using an instance of the enclosing structure unlike Java which allows that.
+
+IMP : structs are public by default and classes are private by default.
+
+file: NestedStructures.cpp
+Nested structs can only be instantiated within the enclosing struct.
+In fact, they can't be instantiated in the main by using objects of the enclosing class.
+
+file: NestedClasses.cpp
+Nested classes can't access the private / protected or public members of the enclosing class whether the nested class is declared private / public / protected in the enclosing class.
+
+IMP : Nested structs are not members and hence they can't access any non-static members of enclosing class and viceversa.
+
 Nested friends:
+
 
 
 

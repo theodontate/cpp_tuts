@@ -31,12 +31,12 @@ float FloatStash::pop () {
 	}
 }
 
-float* FloatStash::peek () {
+float FloatStash::peek () {
 	if (head == 0) {
 		return 0;
 	}
 	else {
-		float* result = &head->value;
+		float result = head->value;
 		return result;
 	}
 

@@ -10,7 +10,7 @@ struct FloatStash {
 	void init ( );
 	void push ( float a );
 	float pop ( );
-	float* peek ( );
+	float peek ( );
 	void cleanup ( );
 };
 

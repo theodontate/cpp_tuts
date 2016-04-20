@@ -2,10 +2,13 @@ DEBUG=-g
 CC=g++
 CFLAGS=-Wall -Werror -std=c++11 -c $(DEBUG)
 LFLAGS=-Wall -Werror -std=c++11 $(DEBUG)
-OBJ=Friend.o
+OBJ=insult.o intStack.o
 
-Friend: $(OBJ)
+insult: $(OBJ)
 	$(CC) $(LFLAGS) -o $@ $(OBJ)
 
-Friend.o: Friend.cpp
+insult.o: insult.cpp intStack.h
+	$(CC) $(CFLAGS) $<
+
+intStack.o: intStack.cpp intStack.h
 	$(CC) $(CFLAGS) $<
