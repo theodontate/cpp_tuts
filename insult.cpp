@@ -12,7 +12,8 @@ int main (int argc, char** argv) {
 			s1.push(value);
 		else break;
 	}
-	while ((s1.head != 0) && ((result = s1.pop()) != 0)) {
+	while (s1.head != 0) {
+		result = s1.pop();
 		std::cout << *result << std::endl;
 	}
 	return 0;
