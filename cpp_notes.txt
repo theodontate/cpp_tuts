@@ -271,6 +271,17 @@ IMP : Nested structs are not members and hence they can't access any non-static 
 
 Nested friends:
 
+Object Layout :
+
+Access control is often referred to as implementation hiding.
+Including functions within structures often referred to as encapsulation.
+
+Reducing recompilation :
+
+It is common to recompile a file if it is touched or if another file it is dependent upon is touched such as an included header file. This can cause major recompilation. This is often referred to as fragile-base-class problems. For huge projects, this can result in a lot of time being wasted for recompilation.
+
+This problem can be resolved using something known as handle classes or Cheshire cat - "everything about the implementation disappears except for a pointer called the smile ". The pointer refers to a structure which is in the implementation file along with all the member function definitions. Thus, as long as the interface is unchanged the header file is untouched.
+The implementation can change at will, and only the implementation file needs to be recompiled and relinked with the project.
 
 
 
